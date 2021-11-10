@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Container.App.Api", "Api.Container.App.Api\Api.Container.App.Api.csproj", "{40BA2E2E-479A-4B8A-BDFE-C61D9504F9B5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Container.App.IAC", "Api.Container.App.IAC\Api.Container.App.IAC.csproj", "{E65C3121-E6E5-4EDE-AB91-18D3D95DD3F7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{08D7CAD3-FE4D-40B8-92BE-B101ADD81EBE}"
+	ProjectSection(SolutionItems) = preProject
+		Dockerfile = Dockerfile
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{40BA2E2E-479A-4B8A-BDFE-C61D9504F9B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40BA2E2E-479A-4B8A-BDFE-C61D9504F9B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40BA2E2E-479A-4B8A-BDFE-C61D9504F9B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40BA2E2E-479A-4B8A-BDFE-C61D9504F9B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E65C3121-E6E5-4EDE-AB91-18D3D95DD3F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E65C3121-E6E5-4EDE-AB91-18D3D95DD3F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E65C3121-E6E5-4EDE-AB91-18D3D95DD3F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E65C3121-E6E5-4EDE-AB91-18D3D95DD3F7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {492E038A-087F-4C4D-A190-676A8F192403}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,3 @@
+config:
+  Api.Container.App.IAC:resourcegroupname: api-container-app-rg
+  azure-native:location: northeurope
