@@ -3,21 +3,16 @@ using Pulumi.AzureNative.ContainerRegistry;
 using Pulumi.AzureNative.OperationalInsights;
 using Pulumi.AzureNative.OperationalInsights.Inputs;
 using Pulumi.AzureNative.Resources;
-using Pulumi.AzureNative.Storage;
-using Pulumi.AzureNative.Storage.Inputs;
 using Pulumi.AzureNative.Web.V20210301;
 using Pulumi.AzureNative.Web.V20210301.Inputs;
 using Pulumi.Docker;
-using System.Threading.Tasks;
 using ContainerArgs = Pulumi.AzureNative.Web.V20210301.Inputs.ContainerArgs;
 using SecretArgs = Pulumi.AzureNative.Web.V20210301.Inputs.SecretArgs;
-using SkuName = Pulumi.AzureNative.Storage.SkuName;
-using StorageAccountArgs = Pulumi.AzureNative.Storage.StorageAccountArgs;
 
 
-class MyStack : Stack
+public class ApiStack : Stack
 {
-    public MyStack()
+    public ApiStack()
     {
         var config = new Pulumi.Config();
 
@@ -25,17 +20,6 @@ class MyStack : Stack
 
         // Create an Azure Resource Group
         var resourceGroup = new ResourceGroup(resourceGroupName);
-
-        // Create an Azure resource (Storage Account)
-        var storageAccount = new StorageAccount("apisa", new StorageAccountArgs
-        {
-            ResourceGroupName = resourceGroup.Name,
-            Sku = new SkuArgs
-            {
-                Name = SkuName.Standard_LRS
-            },
-            Kind = Kind.StorageV2
-        });
 
         var workspace = new Workspace("loganalytics", new WorkspaceArgs
         {
@@ -136,28 +120,9 @@ class MyStack : Stack
             }
         });
 
-
-        this.Url = Output.Format($"https://{containerApp.Configuration.Apply(c => c.Ingress).Apply(i => i.Fqdn)}");
-
-
-        // Export the primary key of the Storage Account
-        this.PrimaryStorageKey = Output.Tuple(resourceGroup.Name, storageAccount.Name).Apply(names =>
-            Output.CreateSecret(GetStorageAccountPrimaryKey(names.Item1, names.Item2)));
+        Url = Output.Format($"https://{containerApp.Configuration.Apply(c => c.Ingress).Apply(i => i.Fqdn)}");
     }
-
-    [Output]
-    public Output<string> PrimaryStorageKey { get; set; }
 
     [Output]
     public Output<string> Url { get; set; }
-
-    private static async Task<string> GetStorageAccountPrimaryKey(string resourceGroupName, string accountName)
-    {
-        var accountKeys = await ListStorageAccountKeys.InvokeAsync(new ListStorageAccountKeysArgs
-        {
-            ResourceGroupName = resourceGroupName,
-            AccountName = accountName
-        });
-        return accountKeys.Keys[0].Value;
-    }
 }
